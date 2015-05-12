@@ -270,11 +270,12 @@ exports.getTwitter = function(req, res, next) {
 
   T.get('search/tweets', { q: '#' + req.query.q, count: 10 }, function(err, reply) {
     if (err) return next(err);
-    res.render('api/twitter', {
-      query: '#'+req.query.q,
-      title: 'Twitter API',
-      tweets: reply.statuses
-    });
+    res.json({data: reply.statuses});
+    // res.render('api/twitter', {
+    //   query: '#'+req.query.q,
+    //   title: 'Twitter API',
+    //   tweets: reply.statuses
+    // });
   });
 };
 
